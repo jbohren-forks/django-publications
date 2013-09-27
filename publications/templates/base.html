@@ -4,6 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		{% block head %}<title>django-publications</title>{% endblock %}
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/transitions.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/tooltip.js"></script>
 		<style type="text/css">
 			body {
 				font-family: "Hiragino Sans GB", "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -18,7 +23,7 @@
 				line-height: 24pt;
 				margin: 0px;
 				padding: 0px;
-				color: #aaa;
+				/*color: #aaa;*/
 			}
 
 			h2 {
@@ -31,6 +36,11 @@
 				color: #999;
 			}
 
+			a.author, a.title {
+				color: black;
+			}
+
+/*
 			.special_links {
 				vertical-align: middle;
 				float: right;
@@ -40,10 +50,6 @@
 			.special_links a {
 				line-height: 24pt;
 				vertical-align: middle;
-			}
-
-			a.author, a.title {
-				color: black;
 			}
 
 			a.keyword {
@@ -67,6 +73,7 @@
 				background: #ccc;
 			}
 
+      */
 			hr {
 				border: 0px;
 				border-top: 1px solid #ddd;
@@ -82,10 +89,121 @@
 				white-space: -o-pre-wrap;
 				word-wrap: break-word;
 			}
+
+      body { padding-top: 70px; }
+
+      .navbar .container { height: 2em; }
+
 		</style>
 	</head>
 	<body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">PHDDB</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control input-sm" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-inverse btn-xs">Submit</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Link</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+    <ol class="breadcrumb">
+      <li><a href="/publications">home</a></li>
+    </ol>
+    <br>
+    <div class="pull-left">
+      <div class="btn-group"  data-toggle="buttons">
+        <label class="btn btn-danger btn-sm">
+          <input type="radio" id="" title="Abstracts">
+          <span class="glyphicon glyphicon-align-justify"></span>
+          </input>
+        </label>
+        <label class="btn btn-danger btn-sm active">
+          <input type="radio" id="" title="Abstracts">
+          <span class="glyphicon glyphicon-th-list"></span>
+          </input>
+        </label>
+        <label class="btn btn-danger btn-sm">
+          <input type="radio" id="" title="Abstracts">
+          <span class="glyphicon glyphicon-th"></span>
+          </input>
+        </label>
+      </div>
+
+      <div class="btn-group">
+        <button id="hideThumnailsButton" class="active btn btn-danger btn-sm" data-toggle="button" title="Thumbnails">
+          <span class="glyphicon glyphicon-picture"></span>
+        </button>
+        <button id="hideTagsButton" class="active btn btn-danger btn-sm"  data-toggle="button" title="Tags">
+          <span class="glyphicon glyphicon-tags"></span>
+        </button>
+        <button id="hideAbstractsButton" class="active btn btn-danger btn-sm"  data-toggle="button"  title="Abstracts">
+          <span class="glyphicon glyphicon-font"></span>
+        </button>
+      </div>
+    </div>
+    
 		{% block content %}
 		{% endblock %}
 	</body>
+  <script>
+
+$(document).ready(function() {
+    $('div.thumnails').show(0);
+
+
+
+    $('#hideThumnailsButton').tooltip({container: 'body'});
+    $('#hideTagsButton').tooltip({container: 'body'});
+    $('#hideAbstractsButton').tooltip({container: 'body'});
+
+    $('#hideThumnailsButton').click(function() {
+        $('.thumbnails').toggle(200);
+        //$('.description').toggleClass('col-sm-10 col-sm-12');
+    });
+    $('#hideTagsButton').click(function() {
+        $('.tags').toggle(200);
+    });
+});
+
+  </script>
 </html>

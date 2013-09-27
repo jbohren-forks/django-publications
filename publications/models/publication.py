@@ -78,6 +78,8 @@ class Publication(models.Model):
 	isbn = models.CharField(max_length=32, verbose_name="ISBN", blank=True,
 		help_text='Only for a book.') # A-B-C-D
 
+	thumbnail = models.ImageField(upload_to='publications/thumbnails', verbose_name='Thumbnail', blank=True, null=True)
+
 	def __init__(self, *args, **kwargs):
 		models.Model.__init__(self, *args, **kwargs)
 

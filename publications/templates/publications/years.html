@@ -6,12 +6,15 @@
 {% endblock %}
 
 {% block content %}
-	<div class="special_links">
-		<a href="?ascii">plain text</a>, 
-		<a href="?bibtex">BibTex</a>
+	<div class="pull-right">
+    <a href="?ascii"><button class="btn btn-primary btn-sm">plain text</button></a> 
+    <a href="?bibtex"><button class="btn btn-primary btn-sm">BibTex</button></a> 
 	</div>
+  <br>
+  <br>
 	{% for year, publications in years %}
-		<a href="/publications/year/{{ year }}/"><h1>{{ year }}</h1></a>
+    <br>
+    <a href="/publications/year/{{ year }}/"><button class="btn"><h1>{{ year }}</h1></button></a>
 		<hr/>
 		<div{% if not forloop.last %} style="margin-bottom: 30px;"{% endif %}>
 		{% for publication in publications %}
